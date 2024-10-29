@@ -1,0 +1,59 @@
+# Set default behavior to automatically normalize line endings
+* text=auto
+
+# TypeScript and JavaScript files with LF (Unix-style) line endings
+*.ts        text eol=lf
+*.tsx       text eol=lf
+*.js        text eol=lf
+*.jsx       text eol=lf
+
+# Configuration and JSON files with LF line endings
+*.json      text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.env       text eol=lf
+*.toml      text eol=lf
+
+# Markdown and documentation files with LF line endings
+*.md        text eol=lf
+*.txt       text eol=lf
+
+# HTML, CSS, and related frontend files
+*.html      text eol=lf
+*.css       text eol=lf
+*.scss      text eol=lf
+*.sass      text eol=lf
+
+# Windows-specific files with CRLF line endings
+*.bat       text eol=crlf
+
+# Binary files (no end-of-line conversion)
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.ico       binary
+*.pdf       binary
+*.svg       binary
+*.woff      binary
+*.woff2     binary
+*.ttf       binary
+*.otf       binary
+
+# Git Large File Storage (LFS) for large assets (if using Git LFS)
+# Uncomment the following lines if using Git LFS
+# *.psd      filter=lfs diff=lfs merge=lfs -text
+# *.zip      filter=lfs diff=lfs merge=lfs -text
+
+# Ignore lock files (specific for Node.js projects)
+package-lock.json text eol=lf
+pnpm-lock.yaml    text eol=lf
+yarn.lock         text eol=lf
+
+# Shell scripts with LF line endings
+*.sh        text eol=lf
+
+# CI/CD and configuration files with LF line endings
+*.github/** text eol=lf
+*.gitignore text eol=lf
+*.editorconfig text eol=lf
