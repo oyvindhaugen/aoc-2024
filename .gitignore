@@ -61,3 +61,4 @@ coverage/
 
 # TypeScript compiler options
 tsconfig.tsbuildinfo
+/src/input_cache

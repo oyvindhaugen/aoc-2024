@@ -1,4 +1,7 @@
-export const getTodayLines = async (year: number, day: number) => {
+import fs from 'fs';
+
+const fetchInput = async (year: number, day: number): Promise<string> => {
+  console.log(`fetching calendar ${year}, day ${day}`);
   const headers = {
     headers: {
       Cookie: `session=${process.env.SESSION_COOKIE}`,
@@ -9,8 +12,30 @@ export const getTodayLines = async (year: number, day: number) => {
     `https://adventofcode.com/${year}/day/${day}/input`,
     headers,
   );
-  const text = await res.text();
-  return text.split('\n');
+  return await res.text();
+};
+
+const isCached = (day: number): boolean =>
+  fs.existsSync(`./src/input_cache/day${day}.txt`);
+
+export const getTodayLines = async (
+  day: number,
+  year: number,
+): Promise<string[]> => {
+  const filePath = `./src/input_cache/day${day}.txt`;
+  if (isCached(day)) {
+    return await fs.promises
+      .readFile(filePath, 'utf-8')
+      .then(x => x.trim().split('\n'));
+  }
+  try {
+    const text = await fetchInput(year, day);
+    await fs.promises.mkdir('./src/input_cache', {recursive: true});
+    await fs.promises.writeFile(filePath, text, 'utf-8');
+    return await getTodayLines(day, year);
+  } catch (e) {
+    throw new Error('Error writing to file: ' + e);
+  }
 };
 
 export const getNumbersFromString = (input: string): number[] =>
@@ -26,4 +51,5 @@ export const distanceBetweenPointsGrid = (
   y2: number,
 ): number => Math.abs(x1 - x2) + Math.abs(y1 - y2);
 
-export const binaryToDecimal = (binaryString: string): number => parseInt(binaryString, 2);
+export const binaryToDecimal = (binaryString: string): number =>
+  parseInt(binaryString, 2);
