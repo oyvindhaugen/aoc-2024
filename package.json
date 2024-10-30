@@ -18,5 +18,8 @@
   "dependencies": {
     "dotenv": "^16.4.5",
     "fs": "^0.0.1-security"
+  },
+  "engines": {
+    "node": ">=10.17.0"
   }
 }

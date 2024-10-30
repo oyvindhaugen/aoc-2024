@@ -1,5 +1,6 @@
 import {getTodayLines} from './utils.ts';
-import { part1, part2 } from './days/day1.ts';
+// import {part1, part2} from './days/day1.ts';
+import {part1, part2} from './old/2019/day1.ts';
 import dotenv from 'dotenv';
 
 const main = async (year: number, day: number) => {
@@ -8,11 +9,13 @@ const main = async (year: number, day: number) => {
   const answer1 = part1(lines);
   const answer2 = part2(lines);
 
-  console.log("part 1: " + answer1 + "\npart 2: " + answer2);
+  console.log('part 1: ' + answer1 + '\npart 2: ' + answer2);
 };
 
 const [year, day] = process.argv.slice(2);
-if (!day || !year) throw new Error('Please provide two parameters: <day> <year>');
-if (isNaN(parseInt(day)) || isNaN(parseInt(year))) throw new Error('Both Parameters must be valid numbers.');
+if (!day || !year)
+  throw new Error('Please provide two parameters: <day> <year>');
+if (isNaN(parseInt(day)) || isNaN(parseInt(year)))
+  throw new Error('Both Parameters must be valid numbers.');
 
 await main(parseInt(year), parseInt(day));

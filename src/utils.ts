@@ -1,3 +1,4 @@
+/* eslint-disable n/no-unsupported-features/node-builtins */
 import fs from 'fs';
 
 const fetchInput = async (year: number, day: number): Promise<string> => {
@@ -41,7 +42,7 @@ export const getTodayLines = async (
 export const getNumbersFromString = (input: string): number[] =>
   (input.match(/\d+/g) || []).map(Number);
 
-export const numberToBinary = (n: number, length: number = 8): string =>
+export const numberToBinary = (n: number, length = 8): string =>
   n.toString(2).padStart(length, '0');
 
 export const distanceBetweenPointsGrid = (
