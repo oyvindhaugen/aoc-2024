@@ -22,18 +22,23 @@ const isCached = (day: number): boolean =>
 export const getTodayLines = async (
   day: number,
   year: number,
+  comma: boolean,
 ): Promise<string[]> => {
   const filePath = `./src/input_cache/day${day}.txt`;
   if (isCached(day)) {
+    if (!comma)
+      return await fs.promises
+        .readFile(filePath, 'utf-8')
+        .then(x => x.trim().split('\n'));
     return await fs.promises
       .readFile(filePath, 'utf-8')
-      .then(x => x.trim().split('\n'));
+      .then(x => x.trim().split(','));
   }
   try {
     const text = await fetchInput(year, day);
     await fs.promises.mkdir('./src/input_cache', {recursive: true});
     await fs.promises.writeFile(filePath, text, 'utf-8');
-    return await getTodayLines(day, year);
+    return await getTodayLines(day, year, comma);
   } catch (e) {
     throw new Error('Error writing to file: ' + e);
   }
@@ -54,3 +59,6 @@ export const distanceBetweenPointsGrid = (
 
 export const binaryToDecimal = (binaryString: string): number =>
   parseInt(binaryString, 2);
+
+export const stringToIntArray = (stringArr: string[]): number[] =>
+  stringArr.map(x => parseInt(x));
