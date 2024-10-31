@@ -6,8 +6,6 @@ interface Point {
 }
 
 const parseDirection = (direction: string): {dx: number; dy: number} => {
-  const point: Point = {x: 0, y: 0};
-
   const prefix = direction.charAt(0);
   const suffix = parseInt(direction.slice(1), 10);
 
