@@ -1,11 +1,11 @@
 import {getTodayLines} from './utils.ts';
 // import {part1, part2} from './days/day1.ts';
-import {part1, part2} from './old/2019/day2.ts';
+import {part1, part2} from './old/2019/day3.ts';
 import dotenv from 'dotenv';
 
 const main = async (year: number, day: number) => {
   dotenv.config();
-  const lines: string[] = await getTodayLines(day, year, true);
+  const lines: string = await getTodayLines(day, year);
   const answer1 = part1(lines);
   const answer2 = part2(lines);
 

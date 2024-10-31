@@ -1,5 +1,3 @@
-import {stringToIntArray} from '../../utils.ts';
-
 const intcode = (intArray: number[]): number[] => {
   for (let i = 0; i < intArray.length; i += 4) {
     const opcode = intArray[i];
@@ -25,16 +23,16 @@ const intcode = (intArray: number[]): number[] => {
   return intArray;
 };
 
-export const part1 = (lines: string[]): number => {
-  const memory = stringToIntArray(lines);
+export const part1 = (lines: string): number => {
+  const memory = lines.split(',').map(x => parseInt(x.trim()));
   memory[1] = 12;
   memory[2] = 2;
   return intcode(memory)[0];
 };
 
-export const part2 = (lines: string[]): number => {
+export const part2 = (lines: string): number => {
   const goal = 19690720;
-  const intArray = stringToIntArray(lines);
+  const intArray = lines.split(',').map(x => parseInt(x.trim()));
   for (let i = 0; i <= 99; i++) {
     for (let j = 0; j <= 99; j++) {
       const memory = [...intArray];
