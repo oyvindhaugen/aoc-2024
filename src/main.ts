@@ -14,7 +14,7 @@ const main = async (year: number, day: number) => {
 
 const [year, day] = process.argv.slice(2);
 if (!day || !year)
-  throw new Error('Please provide two parameters: <day> <year>');
+  throw new Error('Please provide two parameters: <year> <day>');
 if (isNaN(parseInt(day)) || isNaN(parseInt(year)))
   throw new Error('Both Parameters must be valid numbers.');
 
