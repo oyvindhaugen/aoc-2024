@@ -17,19 +17,19 @@ const fetchInput = async (year: number, day: number): Promise<string> => {
 };
 
 const isCached = (day: number): boolean =>
-  fs.existsSync(`./src/input_cache/day${day}.txt`);
+  fs.existsSync(`./input_cache/day${day}.txt`);
 
 export const getTodayLines = async (
   day: number,
   year: number,
 ): Promise<string> => {
-  const filePath = `./src/input_cache/day${day}.txt`;
+  const filePath = `./input_cache/day${day}.txt`;
   if (isCached(day)) {
     return await fs.promises.readFile(filePath, 'utf-8');
   }
   try {
     const text = await fetchInput(year, day);
-    await fs.promises.mkdir('./src/input_cache', {recursive: true});
+    await fs.promises.mkdir('./input_cache', {recursive: true});
     await fs.promises.writeFile(filePath, text, 'utf-8');
     return await getTodayLines(day, year);
   } catch (e) {

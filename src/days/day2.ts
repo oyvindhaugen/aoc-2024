@@ -1,20 +1,24 @@
 export const part1 = (lines: string): string | number => {
-    const splitLines = lines.split('\n').map(line => line.split(' ').map(s => parseInt(s)));
+    const splitLines = lines.split('\n').filter(x => x).map(line => line.split(' ').map(s => parseInt(s)));
+
+    const filteredSplitLines = splitLines.filter(line => { 
+        const isIncreasing = line.every((num, i, arr) => {
+            if (i === 0) return true; 
+            const diff = num - arr[i - 1];
+            return diff >= 1 && diff <= 3;
+        });
     
-    console.log(splitLines.length)
+        const isDecreasing = line.every((num, i, arr) => {
+            if (i === 0) return true; 
+            const diff = arr[i - 1] - num;
+            return diff >= 1 && diff <= 3;
+        });
 
-    const filteredSplitLines = splitLines.filter(line => {
-        //logic is flawed, rethink
-        line.every((val, idx) => idx === 0 || ((val < line[idx - 1] && differenceInRange(val, line[idx - 1], 3)) || (val > line[idx - 1] && differenceInRange(val, line[idx - 1], 3))));
+        return isIncreasing || isDecreasing
     });
-    console.log(filteredSplitLines.length)
 
-
-
-    return 0;
+    return filteredSplitLines.length;
 };
-
-const differenceInRange = (n1: number, n2: number, range: number): boolean => Math.abs(n1 - n2) <= range;
 
 export const part2 = (lines: string): string | number => {
     return 0;
