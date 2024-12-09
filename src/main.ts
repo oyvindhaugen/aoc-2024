@@ -1,5 +1,5 @@
 import {getTodayLines} from './utils.ts';
-import {part1, part2} from './days/day3.ts';
+import {part1, part2} from './days/day4.ts';
 import dotenv from 'dotenv';
 
 const main = async (year: number, day: number) => {
