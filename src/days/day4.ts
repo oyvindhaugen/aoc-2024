@@ -1,6 +1,5 @@
 export const part1 = (lines: string): number | string => {
     const letterMatrix: string[][] = lines.trim().split('\n').map(s => s.split(''));
-    console.log(letterMatrix)
     const directions = [
         { dx: 0, dy: 1 },
         { dx: 1, dy: 0 },
@@ -44,11 +43,29 @@ export const part1 = (lines: string): number | string => {
 
 }
 
-
-
-
-
-
 export const part2 = (lines: string): number | string => {
-    return 0;
+    const letterMatrix: string[][] = lines.trim().split('\n').map(s => s.split(''));
+
+    const rows = letterMatrix.length;
+    const cols = letterMatrix[0].length;
+    let count = 0;
+
+    for (let x = 0; x < rows; x++) {
+        for (let y = 0; y < cols; y++) {
+            if (letterMatrix[x][y] === "A") {
+                if (x - 1 >= 0 && y -1 >= 0 && x + 1 < rows && y + 1 < cols) {
+                    const bL = letterMatrix[x - 1][y + 1];
+                    const tR = letterMatrix[x + 1][y - 1];
+                    const d1 = (bL === 'S' && tR === 'M') || (bL === 'M' && tR === 'S');
+
+                    const bR = letterMatrix[x + 1][y + 1];
+                    const tL = letterMatrix[x - 1][y - 1];
+                    const d2 = (bR === 'S' && tL === 'M') || (bR === 'M' && tL === 'S');
+
+                    if (d1 && d2) count++
+                }
+            }
+        }
+    }
+    return count;
 }
