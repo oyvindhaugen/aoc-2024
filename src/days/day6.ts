@@ -102,6 +102,8 @@ const testInput = `....#.....
 
 type Direction = 'up' | 'right' | 'down' | 'left';
 
+// my attempt, returns correct result for testInput, but not actual input 😭
+
 export const part2 = (lines: string): number | string => {
     const map = testInput.split('\n').map(s => s.split(''));
 
